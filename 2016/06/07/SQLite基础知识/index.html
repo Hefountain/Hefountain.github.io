@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SQLite基础知识 | fountain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SQLite基于命令的操作性质可分为：DDL(数据定义语言)、DQL(数据查询语言)和DML(数据操作语言)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLite基础知识">
+<meta property="og:url" content="http://hefountain.github.io/2016/06/07/SQLite基础知识/index.html">
+<meta property="og:site_name" content="fountain">
+<meta property="og:description" content="SQLite基于命令的操作性质可分为：DDL(数据定义语言)、DQL(数据查询语言)和DML(数据操作语言)">
+<meta property="og:updated_time" content="2016-06-07T13:08:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQLite基础知识">
+<meta name="twitter:description" content="SQLite基于命令的操作性质可分为：DDL(数据定义语言)、DQL(数据查询语言)和DML(数据操作语言)">
+  
+    <link rel="alternative" href="/atom.xml" title="fountain" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">fountain</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hefountain.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SQLite基础知识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/07/SQLite基础知识/" class="article-date">
+  <time datetime="2016-06-07T12:48:07.000Z" itemprop="datePublished">2016-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SQLite基础知识
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SQLite基于命令的操作性质可分为：DDL(数据定义语言)、DQL(数据查询语言)和DML(数据操作语言)<a id="more"></a>。</p>
+<ul>
+<li>DDL：数据定义语言</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">CREATE</td>
+<td style="text-align:left">创建一个新的表，一个表的视图，或者数据库中的其他对象</td>
+</tr>
+<tr>
+<td style="text-align:center">DROP</td>
+<td style="text-align:left">删除整个表，或者表的视图，或者数据库中的其他对象</td>
+</tr>
+<tr>
+<td style="text-align:center">ALTER</td>
+<td style="text-align:left">修改数据库中的某个已有的数据库对象，比如一个表</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>DQL：数据查询语言</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">SELECT</td>
+<td style="text-align:center">从一个或多个表中检索某些记录</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>DML：数据操作语言</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">INSERT</td>
+<td style="text-align:center">创建一条记录</td>
+</tr>
+<tr>
+<td style="text-align:center">UPDATE</td>
+<td style="text-align:center">修改记录</td>
+</tr>
+<tr>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:center">删除记录</td>
+</tr>
+</tbody>
+</table>
+<h3>SQLite常用数据类型</h3>
+
+<ul>
+<li>SQLite存储类</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">存储类</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">NULL</td>
+<td style="text-align:left">值是一个NULL值</td>
+</tr>
+<tr>
+<td style="text-align:center">INTEGER</td>
+<td style="text-align:left">值是一个带符号的整数，根据值的大小存储在1、2、3、4、6或8字节中</td>
+</tr>
+<tr>
+<td style="text-align:center">REAL</td>
+<td style="text-align:left">值是一个浮点值，存储为8字节的IEEE浮点数字</td>
+</tr>
+<tr>
+<td style="text-align:center">TEXT</td>
+<td style="text-align:left">值是一个文本字符串，使用数据库编码（UTF-8、UTF-16BE或UTF-16LE）存储</td>
+</tr>
+<tr>
+<td style="text-align:center">BLOB</td>
+<td style="text-align:left">值是一个bolb数据，完全根据它的输入存储</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Date与Time数据类型</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">存储类</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TEXT</td>
+<td style="text-align:left">格式为”YYYY-MM-DD HH:MM:SS.SSS” 的日期</td>
+</tr>
+<tr>
+<td style="text-align:center">REAL</td>
+<td style="text-align:left">从公元前4714年11月24日格林尼治时间的正午开始算起的天数</td>
+</tr>
+<tr>
+<td style="text-align:center">INTEGER</td>
+<td style="text-align:left">从1970-01-01 00:00:00 UTC算起的秒数</td>
+</tr>
+</tbody>
+</table>
+<h3>操作命令</h3>
+
+<p>打开终端，输入<code>sqlite3 testDB.db</code>。此命令将在当前目录下创建好一个文件testDB.db，该文件将被SQLite引擎用作数据库，可以注意到sqlite3命令在成功创建数据库文件后，将提供一个sqlite&gt;提示符。使用点命令<code>.databases</code>检查创建的数据库是否在数据库列表中。</p>
+<h3 id="SQLite创建create表">SQLite创建create表</h3><p>SQLite的create table （<b>需要注意的是：SQLite是不区分大小写的，但有些命令是大小写敏感的，比如GLOB和glob在SQLite的语句中有不同的含义。</b>) 语句用于在任何给定的数据库创建一个新表。创建基本表，涉及到命名表、定义列表及每一列的数据类型。基本语法如下：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create table database_name.table_name( column1 <span class="keyword">datatype</span> primary key, column2 <span class="keyword">datatype</span>, column3 <span class="keyword">datatype</span>, ...... columnN <span class="keyword">datatype</span>);</div></pre></td></tr></table></figure>
+<p>可以使用<code>.tables</code>命令来验证表是否已成功创建，该命令用于列出数据库中的所有表。<code>.schema</code>命令则可以得到表的完整信息。</p>
+<h3 id="SQLite删除drop表">SQLite删除drop表</h3><p>SQLite的drop table语句用来删除表定义及其所有相关数据、索引、触发器、约束和该表的权限规范。<code>注意使用此命令，一旦一个表被删除，表中所有信息也将永远丢失</code>。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">drop</span> <span class="keyword">table</span> database_name.table_name;</div></pre></td></tr></table></figure></p>
+<h3 id="SQLite_Insert语句">SQLite Insert语句</h3><p>SQLite的insert into 语句用于向数据库的某个表中添加新的数据行。基本语法：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">insert into table_name (<span class="name">column1</span>,column2,column3,...columnN)values(<span class="name">value1</span>,value2,value3,...valueN)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
+<p>此处的column1,column2,…columnN为要插入数据的表中的列的名称。如果要给表中的所有列添加值，可以不指定列名称，但是<code>务必要确保值的顺序与列在表中的顺序一致</code>。即：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name <span class="keyword">values</span>(value1,value2,value3,...valueN);</div></pre></td></tr></table></figure></p>
+<h3 id="SQLite_Select语句">SQLite Select语句</h3><p>SQLite的select语句用于从SQLite数据库中获取数据，以结果表的形式返回数据。基本语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1,column2,columnN <span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure></p>
+<p>如果想要获取所有的可用的字段，则可以使用下面的语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure></p>
+<h3 id="SQLite_Where子句">SQLite Where子句</h3><p>SQLite的where子句用于指定从一个表或多个表中获取数据的条件。如果满足给定的条件，即为真（ture）时，则从表中返回特定的值。<code>可以使用where子句来过滤记录，只获取需要的记录。where子句不仅可以用在select语句中，还可以用在update、delete语句中</code>，等等。基本语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1,column2,columnN <span class="keyword">from</span> table_name <span class="keyword">where</span> [condition];</div></pre></td></tr></table></figure></p>
+<h3 id="SQLite运算符">SQLite运算符</h3><p>运算符是一个保留字或字符，主要用于 SQLite 语句的 WHERE 子句中执行操作，如比较和算术运算。运算符用于指定 SQLite 语句中的条件，并在语句中连接多个条件。</p>
+<ul>
+<li>算术运算符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:left">加法：将运算符两边的值相加</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:left">减法：左操作数减去右操作数</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:left">乘法：把运算符两边的值相乘</td>
+</tr>
+<tr>
+<td style="text-align:center">/</td>
+<td style="text-align:left">除法：左操作数除以右操作数</td>
+</tr>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:left">取模：左操作数除以右操作数后得到的余数</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>比较运算符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运算符</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">==</td>
+<td style="text-align:left">检查两个操作数的值是否相等，如果相等则条件为真</td>
+</tr>
+<tr>
+<td style="text-align:left">=</td>
+<td style="text-align:left">检查两个操作数的值是否相等，如果相等则条件为真</td>
+</tr>
+<tr>
+<td style="text-align:left">!=</td>
+<td style="text-align:left">检查两个操作数的值是否相等，如果不相等则条件为真</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;&gt;</td>
+<td style="text-align:left">检查两个操作数的值是否相等，如果不相等则条件为真</td>
+</tr>
+<tr>
+<td style="text-align:left">&gt;</td>
+<td style="text-align:left">检查左操作数的值是否大于右操作数的值，如果是则条件为真</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;</td>
+<td style="text-align:left">检查左操作数的值是否小于右操作数的值，如果是则条件为真</td>
+</tr>
+<tr>
+<td style="text-align:left">&gt;=</td>
+<td style="text-align:left">检查左操作数的值是否大于等于右操作数的值，如果是则条件为真</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;=</td>
+<td style="text-align:left">检查左操作数的值是否小于等于右操作数的值，如果是则条件为真</td>
+</tr>
+<tr>
+<td style="text-align:left">!&lt;</td>
+<td style="text-align:left">检查左操作数的值是否不小于右操作数的值，如果是则条件为真</td>
+</tr>
+<tr>
+<td style="text-align:left">!&gt;</td>
+<td style="text-align:left">检查左操作数的值是否不大于右操作数的值，如果是则条件为真</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>逻辑运算符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运算符</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">AND</td>
+<td style="text-align:left">AND 运算符允许在一个 SQL 语句的 WHERE 子句中的多个条件的存在</td>
+</tr>
+<tr>
+<td style="text-align:left">BETWEEN</td>
+<td style="text-align:left">BETWEEN 运算符用于在给定最小值和最大值范围内的一系列值中搜索值</td>
+</tr>
+<tr>
+<td style="text-align:left">EXISTS</td>
+<td style="text-align:left">EXISTS 运算符用于在满足一定条件的指定表中搜索行的存在</td>
+</tr>
+<tr>
+<td style="text-align:left">IN</td>
+<td style="text-align:left">IN 运算符用于把某个值与一系列指定列表的值进行比较</td>
+</tr>
+<tr>
+<td style="text-align:left">NOT IN</td>
+<td style="text-align:left">IN 运算符的对立面，用于把某个值与不在一系列指定列表的值进行比较</td>
+</tr>
+<tr>
+<td style="text-align:left">LIKE</td>
+<td style="text-align:left">LIKE 运算符用于把某个值与使用通配符运算符的相似值进行比较</td>
+</tr>
+<tr>
+<td style="text-align:left">GLOB</td>
+<td style="text-align:left">GLOB 运算符用于把某个值与使用通配符运算符的相似值进行比较。GLOB 与 LIKE 不同之处在于，它是大小写敏感的</td>
+</tr>
+<tr>
+<td style="text-align:left">NOT</td>
+<td style="text-align:left">NOT 运算符是所用的逻辑运算符的对立面。比如 NOT EXISTS、NOT BETWEEN、NOT IN，等等。它是否定运算符</td>
+</tr>
+<tr>
+<td style="text-align:left">OR</td>
+<td style="text-align:left">OR 运算符用于结合一个 SQL 语句的 WHERE 子句中的多个条件</td>
+</tr>
+<tr>
+<td style="text-align:left">IS NULL</td>
+<td style="text-align:left">NULL 运算符用于把某个值与 NULL 值进行比较</td>
+</tr>
+<tr>
+<td style="text-align:left">IS</td>
+<td style="text-align:left">IS 运算符与 = 相似</td>
+</tr>
+<tr>
+<td style="text-align:left">IS NOT</td>
+<td style="text-align:left">IS NOT 运算符与 != 相似</td>
+</tr>
+<tr>
+<td style="text-align:left">UNIQUE</td>
+<td style="text-align:left">UNIQUE 运算符搜索指定表中的每一行，确保唯一性（无重复）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>位运算符</li>
+</ul>
+<h3 id="SQLite_Update语句">SQLite Update语句</h3><p>SQLite的update查询用于修改表中的已有的记录，和<code>set</code>一起使用。可以使用带有where子句的update查询来更新选定行，否则所有的行都会被更新。基本语法：<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">update table_name </div><div class="line"><span class="keyword">set</span> column1 <span class="comment">= value1, column2 = value2...,columnN = valueN</span> </div><div class="line">where <span class="comment">[condition]</span>;</div></pre></td></tr></table></figure></p>
+<h3 id="SQLite_Delete语句">SQLite Delete语句</h3><p>SQLite的delete用于删除表中的已有的记录，可以使用带有where子句的delete来删除选定行，否则所有的记录都会被删除。基本语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> [condition];</div></pre></td></tr></table></figure></p>
+<h3 id="SQLite_Like子句">SQLite Like子句</h3><p>SQLite的like运算符是<code>用来匹配通配符指定模式的文本值</code>。如果搜索表达式与模式表达式匹配，like运算符将返回真（true）,也就是1。有两个通配符与like运算符一起使用。<code>百分号（%）</code>和<code>下划线(_)</code>。百分号代表<code>零个、一个或多个数字或字符</code>。下划线代表<code>一个单一的数字或字符</code>。这些符号可以被组合使用。基本语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> <span class="keyword">column</span> <span class="keyword">like</span> <span class="string">'xxxx%'</span>;</div><div class="line">或者</div><div class="line"><span class="keyword">select</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> <span class="keyword">column</span> <span class="keyword">like</span> <span class="string">'%xxxx%'</span>;</div><div class="line">或者</div><div class="line"><span class="keyword">select</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> <span class="keyword">column</span> <span class="keyword">like</span> <span class="string">'xxxx_'</span>;</div><div class="line">或者</div><div class="line"><span class="keyword">select</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> <span class="keyword">column</span> <span class="keyword">like</span> <span class="string">'_xxxx'</span>;</div><div class="line">或者</div><div class="line"><span class="keyword">select</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> <span class="keyword">column</span> <span class="keyword">like</span> <span class="string">'_xxxx_'</span>;</div></pre></td></tr></table></figure></p>
+<p>下面给出一些实例演示带有’%’和’_’运算符的like子句的不同的地方：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语句</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">where column like ‘hi%’</td>
+<td style="text-align:left">查找以hi开头的任意值</td>
+</tr>
+<tr>
+<td style="text-align:left">where column like ‘%hi%’</td>
+<td style="text-align:left">查找任意位置包含hi的任意值</td>
+</tr>
+<tr>
+<td style="text-align:left">where column like ‘_hi%’</td>
+<td style="text-align:left">查找第二位和第三位为hi的任意值</td>
+</tr>
+<tr>
+<td style="text-align:left">where column like ‘h<em>%</em>%’</td>
+<td style="text-align:left">查找以h开头，且长度至少为3个字符的任意值</td>
+</tr>
+<tr>
+<td style="text-align:left">where column like ‘%h’</td>
+<td style="text-align:left">查找以h结尾的任意值</td>
+</tr>
+<tr>
+<td style="text-align:left">where column like ‘_h%i’</td>
+<td style="text-align:left">查找第二位为h，且以i结尾的任意值</td>
+</tr>
+<tr>
+<td style="text-align:left">where column like ‘h___i’</td>
+<td style="text-align:left">查找长度为5位数，且以h开头以i结尾的任意值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SQLite_Order_By排序">SQLite Order By排序</h3><p>SQLite的order by子句是用来基于一个或多个列按升序或降序顺序排列数据。<code>ASC</code>表示升序，<code>DESC</code>表示降序。基本语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">column</span>-<span class="keyword">list</span> </div><div class="line"><span class="keyword">from</span> table_name</div><div class="line">[<span class="keyword">where</span> condition] </div><div class="line">[<span class="keyword">order</span> <span class="keyword">by</span> column1,column2, .. columnN] [<span class="keyword">ASC</span> | <span class="keyword">DESC</span>];</div></pre></td></tr></table></figure></p>
+<h3 id="SQLite_Group_By分组">SQLite Group By分组</h3><p>SQLite的group by子句用于与select语句一起使用，来对相同的数据进行分组。在select语句中，<code>group by子句放在where子句之后，放在order by子句之前</code>。基本语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">column</span>-<span class="keyword">list</span></div><div class="line"><span class="keyword">from</span> table_name <span class="keyword">where</span> [condition]</div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> column1,column2,...columnN</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> column1,column2,...columnN;</div></pre></td></tr></table></figure></p>
+<h3 id="SQLite_Distinct关键字">SQLite Distinct关键字</h3><p>SQLite的Distinct 关键字与select语句一起使用，来<code>消除所有重复的记录，并只获取唯一一次记录</code>。有可能出现一种情况，在一个表中有多个重复的记录。当提取这样的记录时，distinct关键字就显得很有意义了。基本语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> column1,column2,...columnN</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> [condition];</div></pre></td></tr></table></figure></p>
+<h3 id="SQLite_Alter命令">SQLite Alter命令</h3><p>SQLite的alter table命令不通过执行一个完整的转储和数据的重载来修改已有的表。可以使用alter table语句<code>重命名表</code>，使用alter table语句还可以<code>在已有的 表中添加额外的列</code>。基本语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">重命名表：</div><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> database_name.table_name <span class="keyword">rename</span> <span class="keyword">to</span> new_table_name;</div><div class="line">在已有的表中添加一个新的列:</div><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> database_name.table_name <span class="keyword">add</span> <span class="keyword">column</span> column_definition...;</div><div class="line">实例：</div><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> person <span class="keyword">add</span> <span class="keyword">column</span> sex <span class="built_in">char</span>(<span class="number">1</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="SQLite_AND/OR_运算符">SQLite AND/OR 运算符</h3><p>SQLite的AND和OR运算符用于编译多个条件来缩小在SQLite语句中的所选的数据。这两个运算符被称为连接运算符。</p>
+<ul>
+<li><p>AND运算符<br>AND 运算符允许在一个 SQL 语句的 WHERE 子句中的多个条件的存在。使用 AND 运算符时，只有当所有条件都为真（true）时，整个条件为真（true）。例如，只有当 condition1 和 condition2 都为真（true）时，[condition1] AND [condition2] 为真（true）。基本语法：  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">select</span> <span class="selector-tag">column1</span>,<span class="selector-tag">column2</span>,..<span class="selector-class">.columnN</span>  </div><div class="line"><span class="selector-tag">from</span> <span class="selector-tag">table_name</span></div><div class="line"><span class="selector-tag">where</span> <span class="selector-attr">[condition]</span> <span class="selector-tag">and</span> <span class="selector-attr">[condition2]</span>..<span class="selector-class">.and</span> <span class="selector-attr">[conditionN]</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>OR 运算符<br>OR 运算符也用于结合一个 SQL 语句的 WHERE 子句中的多个条件。使用 OR 运算符时，只要当条件中任何一个为真（true）时，整个条件为真（true）。例如，只要当 condition1 或 condition2 有一个为真（true）时，[condition1] OR [condition2] 为真（true）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">select</span> <span class="selector-tag">column1</span>,<span class="selector-tag">column2</span>,..<span class="selector-class">.columnN</span> </div><div class="line"> <span class="selector-tag">from</span> <span class="selector-tag">table_name</span> </div><div class="line"><span class="selector-tag">where</span> <span class="selector-attr">[condition]</span> <span class="selector-tag">or</span> <span class="selector-attr">[condition2]</span>..<span class="selector-class">.or</span> <span class="selector-attr">[conditionN]</span>;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hefountain.github.io/2016/06/07/SQLite基础知识/" data-id="ciwf5c26v000c5r3j93m9u733" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLite/">SQLite</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/07/循序渐进SQLite/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          循序渐进SQLite
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/07/常用的GCD函数/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">常用的GCD函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CADisplayLink/">CADisplayLink</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCD/">GCD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NSNull/">NSNull</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NSTimer/">NSTimer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nil/">Nil</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/">SQLite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite函数/">SQLite函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UIPickerView/">UIPickerView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dispatch-after/">dispatch_after</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dispatch-async/">dispatch_async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dispatch-once/">dispatch_once</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nil/">nil</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/串行/">串行</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/伪元素/">伪元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/伪类/">伪类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冒泡排序/">冒泡排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数/">函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象归档/">对象归档</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并发/">并发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步/">异步</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速排序/">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/沙盒/">沙盒</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直接插入排序/">直接插入排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直接选择排序/">直接选择排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/队列/">队列</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CADisplayLink/" style="font-size: 10px;">CADisplayLink</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/NSNull/" style="font-size: 10px;">NSNull</a> <a href="/tags/NSTimer/" style="font-size: 10px;">NSTimer</a> <a href="/tags/Nil/" style="font-size: 10px;">Nil</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SQLite函数/" style="font-size: 10px;">SQLite函数</a> <a href="/tags/UIPickerView/" style="font-size: 10px;">UIPickerView</a> <a href="/tags/dispatch-after/" style="font-size: 10px;">dispatch_after</a> <a href="/tags/dispatch-async/" style="font-size: 10px;">dispatch_async</a> <a href="/tags/dispatch-once/" style="font-size: 10px;">dispatch_once</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/串行/" style="font-size: 10px;">串行</a> <a href="/tags/伪元素/" style="font-size: 10px;">伪元素</a> <a href="/tags/伪类/" style="font-size: 10px;">伪类</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/函数/" style="font-size: 10px;">函数</a> <a href="/tags/对象归档/" style="font-size: 10px;">对象归档</a> <a href="/tags/并发/" style="font-size: 10px;">并发</a> <a href="/tags/异步/" style="font-size: 10px;">异步</a> <a href="/tags/快速排序/" style="font-size: 10px;">快速排序</a> <a href="/tags/沙盒/" style="font-size: 10px;">沙盒</a> <a href="/tags/直接插入排序/" style="font-size: 10px;">直接插入排序</a> <a href="/tags/直接选择排序/" style="font-size: 10px;">直接选择排序</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/队列/" style="font-size: 10px;">队列</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/08/JavaScript闭包/">JavaScript闭包</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/12/jQuery学习笔记/">jQuery学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/09/CSS知识点汇集一/">CSS知识点汇集一</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/07/CSS之伪类和伪元素/">CSS之伪类和伪元素</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/24/Python学习/">Python学习</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 fountain<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

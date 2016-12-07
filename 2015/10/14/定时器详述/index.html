@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>定时器详述 | fountain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在iOS开发过程中，定时器通常用在这样的情况下：在某个时间后去执行某个方法，或者是按照一个周期循环执行某个方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定时器详述">
+<meta property="og:url" content="http://hefountain.github.io/2015/10/14/定时器详述/index.html">
+<meta property="og:site_name" content="fountain">
+<meta property="og:description" content="在iOS开发过程中，定时器通常用在这样的情况下：在某个时间后去执行某个方法，或者是按照一个周期循环执行某个方法。">
+<meta property="og:updated_time" content="2015-10-14T09:48:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="定时器详述">
+<meta name="twitter:description" content="在iOS开发过程中，定时器通常用在这样的情况下：在某个时间后去执行某个方法，或者是按照一个周期循环执行某个方法。">
+  
+    <link rel="alternative" href="/atom.xml" title="fountain" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">fountain</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hefountain.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-定时器详述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/14/定时器详述/" class="article-date">
+  <time datetime="2015-10-14T03:25:58.000Z" itemprop="datePublished">2015-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      定时器详述
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在iOS开发过程中，定时器通常用在这样的情况下：在某个时间后去执行某个方法，或者是按照一个周期循环执行某个方法。<a id="more"></a>大概呢，有以下三种方案：</p>
+<blockquote>
+<p>NSTimer<br>CADisplayLink<br>GCD</p>
+</blockquote>
+<hr>
+<h3 id="关于NSTimer">关于NSTimer</h3><ul>
+<li><p>NSTimer的初始化方法：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+ (<span class="built_in">NSTimer</span> *)timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti invocation:(<span class="built_in">NSInvocation</span> *)invocation repeats:(<span class="built_in">BOOL</span>)yesOrNo;</div><div class="line">+ (<span class="built_in">NSTimer</span> *)scheduledTimerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti invocation:(<span class="built_in">NSInvocation</span> *)invocation repeats:(<span class="built_in">BOOL</span>)yesOrNo;</div><div class="line"></div><div class="line">+ (<span class="built_in">NSTimer</span> *)timerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti target:(<span class="keyword">id</span>)aTarget selector:(SEL)aSelector userInfo:(<span class="keyword">id</span>)userInfo repeats:(<span class="built_in">BOOL</span>)yesOrNo;</div><div class="line">+ (<span class="built_in">NSTimer</span> *)scheduledTimerWithTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti target:(<span class="keyword">id</span>)aTarget selector:(SEL)aSelector userInfo:(<span class="keyword">id</span>)userInfo repeats:(<span class="built_in">BOOL</span>)yesOrNo;</div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)initWithFireDate:(<span class="built_in">NSDate</span> *)date interval:(<span class="built_in">NSTimeInterval</span>)ti target:(<span class="keyword">id</span>)t selector:(SEL)s userInfo:(<span class="keyword">id</span>)ui repeats:(<span class="built_in">BOOL</span>)rep <span class="built_in">NS_DESIGNATED_INITIALIZER</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>部分参数说明</strong></p>
+<blockquote>
+<p>repeats: 设置定时器是否循环执行，YES表示循环执行，NO将只执行一次。<br>NSTimeInterval: 执行之前等待的时间<br>target: 需要执行方法的对象<br>selector: 需要执行的方法</p>
+</blockquote>
+</li>
+<li><p><strong>说明：</strong>不是以<code>scheduledTimerWithTimeInterval:</code>方式初始化的，需要手动地将timer添加到一个runloop中。而以<code>scheduledTimerWithTimeInterval:</code>方式初始化，会自动把timer加入MainRunloop的NSDefaultRunLoopMode中。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSTimer *timer = [NSTimer <span class="string">timerWithTimeInterval:</span><span class="number">8</span> <span class="string">target:</span>self <span class="string">selector:</span><span class="meta">@selector</span>(timerAction) <span class="string">userInfo:</span>nil <span class="string">repeats:</span>YES];   </div><div class="line">[[NSRunLoop mainRunLoop] <span class="string">addTimer:</span>timer <span class="string">forMode:</span>NSDefaultRunLoopMode];</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>其他方法及属性</strong></p>
+  <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="name">void</span>)fire<span class="comment">;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>该方法用来立即触发该定时器；    </p>
+<blockquote>
+<p>官方解释：You can use this method to fire a repeating timer without interrupting its regular firing schedule. If the timer is non-repeating, it is automatically invalidated after firing, even if its scheduled fire date has not arrived.<br>意思是说：在重复执行的定时器中调用此方法后立即触发该定时器，但不会中断其之前的执行计划；在不重复执行的定时器中调用此方法，立即触发后，就会使这个定时器失效。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="name">void</span>)invalidate<span class="comment">;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>该方法是唯一的，将计时器从runloop中移出的方法。</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="section">timer</span>.fireDate = [NSDate distantPast];  <span class="comment">// 开启定时器</span></div><div class="line"><span class="section">timer</span>.fireDate = [NSDate distantFuture]; <span class="comment">// 关闭定时器</span></div></pre></td></tr></table></figure>
+<ul>
+<li>如果希望先停止，然后再某种情况下再次开启运行timer，可以使用属性：<strong><strong><code>fireDate</code></strong></strong>。</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这是一个只读的属性，用来获取定时器调用的间隔时间。</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>) <span class="built_in">NSTimeInterval</span> timeInterval;</div><div class="line"></div><div class="line"><span class="comment">// 7.0之后新增的一个属性，因为NSTimer并不完全精准，通过这个值设置误差范围。 </span></div><div class="line"><span class="keyword">@property</span> <span class="built_in">NSTimeInterval</span> tolerance;</div><div class="line"></div><div class="line"> <span class="comment">// 判断定时器是否有效</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">getter</span>=isValid) <span class="built_in">BOOL</span> valid;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="关于CADisplayLink">关于CADisplayLink</h3><ul>
+<li><p>CADisplayLink是一个能让我们<code>以和屏幕刷新率同步的频率</code>将特定的内容画到屏幕上的定时器类。CADisplayLink以特定模式注册到runloop后，每当屏幕显示内容刷新结束的时候，runloop就会向CADisplayLink指定的target发送一次指定的selector消息，CADisplayLink类对应的selector就会被调用一次。所以通常情况下，按照<code>iOS设备屏幕的刷新率60次/秒</code>。因此CADisplayLink的selector默认调用周期是每秒60次，这个周期可以通过frameInterval属性设置，CADisplayLink的selector每秒调用次数=60/frameInterval。比如当frameInterval设为2，每秒调用就变成30次。</p>
+</li>
+<li><p>CADisplayLink的方法及属性</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">+ (<span class="built_in">CADisplayLink</span> *)displayLinkWithTarget:(<span class="keyword">id</span>)target selector:(SEL)sel;</div><div class="line">- (<span class="keyword">void</span>)addToRunLoop:(<span class="built_in">NSRunLoop</span> *)runloop forMode:(<span class="built_in">NSString</span> *)mode;</div><div class="line">- (<span class="keyword">void</span>)removeFromRunLoop:(<span class="built_in">NSRunLoop</span> *)runloop forMode:(<span class="built_in">NSString</span> *)mode;</div><div class="line">- (<span class="keyword">void</span>)invalidate;</div><div class="line"></div><div class="line"><span class="comment">// 只读的CFTimeInterval值，表示屏幕显示的上一帧的时间戳，这个属性通常被target用来计算下一帧中应该显示的内容。 </span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">readonly</span>, <span class="keyword">nonatomic</span>) <span class="built_in">CFTimeInterval</span> timestamp;</div><div class="line"></div><div class="line"><span class="comment">// 表示两次屏幕刷新之间的时间间隔，**该属性在target的selector被首次调用以后才会被赋值。selector的调用间隔时间计算方式是：时间=duration×frameInterval**。 </span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">readonly</span>, <span class="keyword">nonatomic</span>) <span class="built_in">CFTimeInterval</span> duration;</div><div class="line"></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">getter</span>=isPaused, <span class="keyword">nonatomic</span>) <span class="built_in">BOOL</span> paused;</div><div class="line"></div><div class="line"><span class="comment">// 用来设置间隔多少帧调用一次selector方法，默认值是1，即每帧都调用一次。</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">NSInteger</span> frameInterval;</div></pre></td></tr></table></figure>
+</li>
+<li><p>示例</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.displayLink = [<span class="built_in">CADisplayLink</span> displayLinkWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(handleDisplayLink:)];    </div><div class="line"><span class="keyword">self</span>.displayLink.frameInterval = <span class="number">2</span>;</div><div class="line">[<span class="keyword">self</span>.displayLink addToRunLoop:[<span class="built_in">NSRunLoop</span> currentRunLoop] forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</div><div class="line">  </div><div class="line"><span class="comment">// 关闭定时器</span></div><div class="line">[<span class="keyword">self</span>.displayLink invalidate];</div><div class="line"><span class="keyword">self</span>.displayLink = <span class="literal">nil</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>CADisplaylink和NSTimer的区别</strong></p>
+<blockquote>
+<p>CADisplayLink： 使用场合相对专一，适合做UI的不停重绘，比如<code>自定义动画引擎或者视频播放的渲染</code>。在UI相关的动画或者显示内容使用CADisplayLink显得很方便，因为不需要格外关心屏幕的刷新频率了，它本身就是跟屏幕刷新同步的。<br>NSTimer： 使用范围要广泛的多，各种需要<code>单次或者循环定时处理的任务</code>都可以使用。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="关于GCD">关于GCD</h3><ul>
+<li><p>执行一次</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> delayInSeconds = <span class="number">2.0</span>;</div><div class="line"><span class="keyword">dispatch_time_t</span> popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC); </div><div class="line">dispatch_after(popTime, dispatch_get_main_queue(), ^(<span class="keyword">void</span>)&#123; </div><div class="line">    <span class="comment">//执行事件</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>重复执行</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">NSTimeInterval period = <span class="number">1</span>.<span class="number">0</span><span class="comment">;</span></div><div class="line"><span class="keyword">dispatch_queue_t </span>queue = <span class="keyword">dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, </span><span class="number">0</span>)<span class="comment">;</span></div><div class="line"><span class="keyword">dispatch_source_t </span>_timer = <span class="keyword">dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, </span><span class="number">0</span>, <span class="number">0</span>, queue)<span class="comment">;</span></div><div class="line"><span class="keyword">dispatch_source_set_timer(_timer, </span><span class="keyword">dispatch_walltime(NULL, </span><span class="number">0</span>), period * NSEC_PER_SEC, <span class="number">0</span>)<span class="comment">;</span></div><div class="line"><span class="keyword">dispatch_source_set_event_handler(_timer, </span>^&#123;</div><div class="line">	NSLog(@<span class="string">"GCD continue"</span>)<span class="comment">;</span></div><div class="line">&#125;)<span class="comment">;   </span></div><div class="line"><span class="keyword">dispatch_resume(_timer);</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hefountain.github.io/2015/10/14/定时器详述/" data-id="ciwf5c27l00105r3j198ued1w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CADisplayLink/">CADisplayLink</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCD/">GCD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NSTimer/">NSTimer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/07/数据存储（一）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数据存储（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/12/关于UIPickerView/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于UIPickerView</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CADisplayLink/">CADisplayLink</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCD/">GCD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NSNull/">NSNull</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NSTimer/">NSTimer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nil/">Nil</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/">SQLite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite函数/">SQLite函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UIPickerView/">UIPickerView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dispatch-after/">dispatch_after</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dispatch-async/">dispatch_async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dispatch-once/">dispatch_once</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nil/">nil</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/串行/">串行</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/伪元素/">伪元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/伪类/">伪类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冒泡排序/">冒泡排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数/">函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对象归档/">对象归档</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并发/">并发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步/">异步</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速排序/">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/沙盒/">沙盒</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直接插入排序/">直接插入排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直接选择排序/">直接选择排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/队列/">队列</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CADisplayLink/" style="font-size: 10px;">CADisplayLink</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/NSNull/" style="font-size: 10px;">NSNull</a> <a href="/tags/NSTimer/" style="font-size: 10px;">NSTimer</a> <a href="/tags/Nil/" style="font-size: 10px;">Nil</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/SQLite函数/" style="font-size: 10px;">SQLite函数</a> <a href="/tags/UIPickerView/" style="font-size: 10px;">UIPickerView</a> <a href="/tags/dispatch-after/" style="font-size: 10px;">dispatch_after</a> <a href="/tags/dispatch-async/" style="font-size: 10px;">dispatch_async</a> <a href="/tags/dispatch-once/" style="font-size: 10px;">dispatch_once</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/串行/" style="font-size: 10px;">串行</a> <a href="/tags/伪元素/" style="font-size: 10px;">伪元素</a> <a href="/tags/伪类/" style="font-size: 10px;">伪类</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/函数/" style="font-size: 10px;">函数</a> <a href="/tags/对象归档/" style="font-size: 10px;">对象归档</a> <a href="/tags/并发/" style="font-size: 10px;">并发</a> <a href="/tags/异步/" style="font-size: 10px;">异步</a> <a href="/tags/快速排序/" style="font-size: 10px;">快速排序</a> <a href="/tags/沙盒/" style="font-size: 10px;">沙盒</a> <a href="/tags/直接插入排序/" style="font-size: 10px;">直接插入排序</a> <a href="/tags/直接选择排序/" style="font-size: 10px;">直接选择排序</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/队列/" style="font-size: 10px;">队列</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/08/JavaScript闭包/">JavaScript闭包</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/12/jQuery学习笔记/">jQuery学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/09/CSS知识点汇集一/">CSS知识点汇集一</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/07/CSS之伪类和伪元素/">CSS之伪类和伪元素</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/24/Python学习/">Python学习</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 fountain<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
